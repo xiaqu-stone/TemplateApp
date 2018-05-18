@@ -13,7 +13,7 @@ import java.lang.reflect.Method
  */
 object SPUtils {
 
-    val FILE_NAME = AppUtil.toMD5("loan_share_data")
+    private val FILE_NAME = AppUtil.toMD5("loan_share_data")
 
     val TOKEN = AppUtil.toMD5("TOKEN")
     val UUID = AppUtil.toMD5("UUID")
@@ -27,7 +27,6 @@ object SPUtils {
         val sp = context.getSharedPreferences(FILE_NAME,
                 Context.MODE_PRIVATE)
         val editor = sp.edit()
-
         when (value) {
             is String -> editor.putString(key, value)
             is Int -> editor.putInt(key, value)
@@ -58,15 +57,15 @@ object SPUtils {
     }
 
     fun put(key: String, value: Any) {
-        put(App.app, key, value)
+        put(App.getApp(), key, value)
     }
 
     operator fun get(key: String, defaultValue: Any): Any {
-        return get(App.app, key, defaultValue)
+        return get(App.getApp(), key, defaultValue)
     }
 
     fun remove(key: String) {
-        remove(App.app, key)
+        remove(App.getApp(), key)
     }
 
     /**

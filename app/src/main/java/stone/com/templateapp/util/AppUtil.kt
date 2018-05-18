@@ -1,6 +1,3 @@
-/**
- *
- */
 package stone.com.templateapp.util
 
 import android.annotation.SuppressLint
@@ -13,11 +10,14 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.telephony.TelephonyManager
 import android.text.TextUtils
+import org.jetbrains.anko.toast
+import stone.com.templateapp.R
 import java.io.UnsupportedEncodingException
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import java.util.*
 
+@Suppress("unused", "MemberVisibilityCanBePrivate")
 object AppUtil {
 
     private const val TAG = "AppUtil"
@@ -42,6 +42,44 @@ object AppUtil {
     }
 
     /**
+     * 退出当前应用的进程
+     */
+    fun exitProcess() {
+//        Process.killProcess(Process.myPid())
+        //二选一即可
+        System.exit(0)
+    }
+
+    private var exitTime: Long = 0L
+
+    fun toastExitProcess(ctx: Context) {
+        val curTime = System.currentTimeMillis()
+        if (curTime - exitTime > 2000) {
+            ctx.toast(R.string.app_exit_tips)
+            exitTime = curTime
+        } else {
+            //todo MD Dialog展示debug处理
+//            if (BuildConfig.DEBUG) {
+//                DialogMD(activity, R.string.exit_or_change_host)
+//                        .setCancelable(false)
+//                        .setBtnPositive(R.string.btn_exit)
+//                        .setBtnNegative(R.string.btn_change_host)
+//                        .setBtnNeutral("取消")
+//                        .setListener { dialog, which ->
+//                            when (which) {
+//                                -1 -> App.app.finishAll()
+//                                -2 -> intent(TestApiActivity::class.java)
+//                                -3 -> dialog.dismiss()
+//                            }
+//                        }.show()
+//
+//            } else {
+            exitProcess()
+//            }
+        }
+    }
+
+    /**
      * 获取当前进程名称
      *
      * @param context
@@ -63,29 +101,41 @@ object AppUtil {
      * 判断应用是否处于启动状态
      *
      * @param ctx         Content
-     * @param packageName 要判断应用的 ApplicationId
+     * @param applicationId 要判断应用的 ApplicationId，build.gradle中定义的APPLICATION_ID
      * @return Boolean true：进程活着并且应用的任务栈不为空； false：进程死亡或者应用的任务栈为空
      */
-    fun isAppAlive(ctx: Context, packageName: String): Boolean {
+    fun isAppAlive(ctx: Context, applicationId: String): Boolean {
         val activityManager = ctx.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val runningApps = activityManager.runningAppProcesses ?: return false
         for (i in runningApps.indices) {
             Logs.d(TAG, "isAppAlive: i = $i , processName = ${runningApps[i].processName}")
-            if (runningApps[i].processName == packageName) {
-                val runningTasks = activityManager.getRunningTasks(10)
-                for (j in runningTasks.indices) {
-                    val taskInfo = runningTasks[j]
-//                    Logs.i(TAG, "isAppAlive: i = " + j + ", taskInfo.baseActivity = " + taskInfo.baseActivity.className + ", taskInfo.topActivity = " + taskInfo.topActivity.className)
-//                    Logs.i(TAG, """isAppAlive: i = $j, taskInfo.numActivities = ${taskInfo.numActivities}, taskInfo.numRunning = ${taskInfo.numRunning}, taskInfo.description = ${taskInfo.description}, taskInfo.describeContents() = ${taskInfo.describeContents()}""")
-                    //在此处判断全限定类名时，应以包名为基准（当applicationId与packageName不一致时）
-                    if (taskInfo.baseActivity.className.startsWith(packageName) && taskInfo.numActivities > 0) {
-                        Logs.i(TAG, "isAppAlive: the $packageName is running, isAppAlive return true. the num of activities is ${taskInfo.numActivities}")
-                        return true
+            if (runningApps[i].processName == applicationId) { //此处processName进程名以applicationId命名，与包路径的包名无关
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    val appTasks = activityManager.appTasks
+                    for (task in appTasks) {
+                        //直接获取的当前进程的活动栈，无需判断包名
+                        if (task.taskInfo.numActivities > 0) {
+                            Logs.i(TAG, "isAppAlive: the $applicationId is running, isAppAlive return true. the num of activities is ${task.taskInfo.numActivities}")
+                            return true
+                        }
+                    }
+                } else {
+                    @Suppress("DEPRECATION")
+                    val runningTasks = activityManager.getRunningTasks(10)
+                    for (taskInfo in runningTasks) {
+                        //task.taskInfo.baseActivity.packageName 与 applicaitonId等同
+                        //task.taskInfo.baseActivity.className 全限定了类名，前缀不一定是applicationId
+                        //获取当前手机的所有活动栈，需要判断当前应用的包名
+                        if (taskInfo.baseActivity.packageName == applicationId && taskInfo.numActivities > 0) {
+                            Logs.i(TAG, "isAppAlive: the $applicationId is running, isAppAlive return true. the num of activities is ${taskInfo.numActivities}")
+                            return true
+                        }
                     }
                 }
+
             }
         }
-        Logs.i(TAG, "isAppAlive: the $packageName is not running, isAppAlive return false.")
+        Logs.i(TAG, "isAppAlive: the $applicationId is not running, isAppAlive return false.")
         return false
     }
 
@@ -114,7 +164,8 @@ object AppUtil {
         return value
     }
 
-    @SuppressLint("MissingPermission")
+    @Suppress("DEPRECATION")
+    @SuppressLint("MissingPermission", "HardwareIds")
     fun getIMEI(ctx: Context): String {
         var imei = SPUtils[ctx, SPUtils.IMEI, ""].toString()
         if (TextUtils.isEmpty(imei)) {

@@ -1,10 +1,10 @@
 @file:Suppress("unused")
 
-package stone.com.templateapp.util
+package com.stone.templateapp.util
 
 import android.content.Context
 import android.content.SharedPreferences
-import stone.com.templateapp.App
+import com.stone.templateapp.App
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.Method
 

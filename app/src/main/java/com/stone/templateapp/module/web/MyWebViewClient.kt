@@ -1,12 +1,12 @@
-package stone.com.templateapp.module.web
+package com.stone.templateapp.module.web
 
 //import `in`.srain.cube.views.ptr.PtrFrameLayout
 import android.graphics.Bitmap
 import android.net.http.SslError
 import android.view.View
 import android.webkit.*
-import stone.com.templateapp.extensions.overrideUrlLoading
-import stone.com.templateapp.util.Logs
+import com.stone.templateapp.extensions.overrideUrlLoading
+import com.stone.templateapp.util.Logs
 
 /**
  * Created By: sqq

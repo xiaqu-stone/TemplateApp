@@ -1,4 +1,4 @@
-package stone.com.templateapp.util
+package com.stone.templateapp.util
 
 import android.annotation.SuppressLint
 import android.app.ActivityManager
@@ -10,8 +10,8 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.telephony.TelephonyManager
 import android.text.TextUtils
+import com.stone.templateapp.R
 import org.jetbrains.anko.toast
-import stone.com.templateapp.R
 import java.io.UnsupportedEncodingException
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException

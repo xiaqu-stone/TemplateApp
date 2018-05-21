@@ -1,12 +1,12 @@
-package stone.com.templateapp.module.web
+package com.stone.templateapp.module.web
 
 import android.view.View
 import android.webkit.ConsoleMessage
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.widget.ProgressBar
-import stone.com.templateapp.extensions.setTitle
-import stone.com.templateapp.util.Logs
+import com.stone.templateapp.extensions.setTitle
+import com.stone.templateapp.util.Logs
 
 /**
  * Created By: sqq

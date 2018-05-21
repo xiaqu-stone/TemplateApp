@@ -1,4 +1,4 @@
-package stone.com.templateapp.util
+package com.stone.templateapp.util
 
 import android.text.TextUtils
 import android.util.Log
@@ -6,7 +6,7 @@ import android.util.Log
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import stone.com.templateapp.BuildConfig
+import com.stone.templateapp.BuildConfig
 
 /**
  * Created by sqq on 17/6/1

@@ -1,8 +1,8 @@
-package stone.com.templateapp
+package com.stone.templateapp
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import stone.com.templateapp.util.AppUtil
+import com.stone.templateapp.util.AppUtil
 
 /**
  * Example local unit test, which will execute on the development machine (host).

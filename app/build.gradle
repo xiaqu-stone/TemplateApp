@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion conf.compileSdkVersion
     defaultConfig {
-        applicationId "stone.com.templateapp"
+        applicationId "com.stone.templateapp"
         minSdkVersion conf.minSdkVersion
         targetSdkVersion conf.targetSdkVersion
         versionCode conf.versionCode

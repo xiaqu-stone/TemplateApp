@@ -1,4 +1,4 @@
-package stone.com.templateapp.extensions
+package com.stone.templateapp.extensions
 
 import android.app.Activity
 import android.os.Build

@@ -1,8 +1,8 @@
-package stone.com.templateapp.extensions
+package com.stone.templateapp.extensions
 
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.toast
-import stone.com.templateapp.App
+import com.stone.templateapp.App
 
 /**
  * Created By: sqq

@@ -1,12 +1,12 @@
-package stone.com.templateapp
+package com.stone.templateapp
 
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
-import stone.com.templateapp.util.AppUtil
-import stone.com.templateapp.util.Logs
+import com.stone.templateapp.util.AppUtil
+import com.stone.templateapp.util.Logs
 
 
 class App : Application(), Application.ActivityLifecycleCallbacks {

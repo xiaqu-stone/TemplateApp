@@ -1,4 +1,4 @@
-package stone.com.templateapp
+package com.stone.templateapp
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

@@ -1,4 +1,4 @@
-package stone.com.templateapp.extensions
+package com.stone.templateapp.extensions
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -9,9 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebSettings
 import android.webkit.WebView
-import stone.com.templateapp.R
-import stone.com.templateapp.module.web.MyDownListener
-import stone.com.templateapp.util.Logs
+import com.stone.templateapp.R
+import com.stone.templateapp.module.web.MyDownListener
+import com.stone.templateapp.util.Logs
 
 /**
  * 关于WebView及其附属类的一些函数扩展

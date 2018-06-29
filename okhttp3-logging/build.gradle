@@ -23,3 +23,31 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$okhttp"
     implementation "com.sqq.xiaqu:logs:1.0.0"
 }
+
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'okhttp3-logging'
+
+    publishedGroupId = 'com.sqq.xiaqu'
+    libraryName = 'okhttp3-logging'
+    artifact = 'okhttp3-logging'
+
+    libraryVersion = '1.0.0'
+
+    libraryDescription = 'Okhttp3 LoggingIntercept自定义Logs JSON 输出'
+
+    siteUrl = 'https://github.com/xiaqu-stone'
+    gitUrl = 'https://github.com/xiaqu-stone/TemplateApp/tree/http'
+
+    developerId = 'stone'
+    developerName = 'xiaqu-stone'
+    developerEmail = 'stone.xiaqu@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+apply from: "https://raw.githubusercontent.com/xiaqu-stone/ComPro/master/install-v1.gradle"
+apply from: "https://raw.githubusercontent.com/xiaqu-stone/ComPro/master/bintray-v2.gradle"

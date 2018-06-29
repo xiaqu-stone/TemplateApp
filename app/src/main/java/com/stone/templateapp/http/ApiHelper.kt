@@ -1,7 +1,6 @@
 package com.stone.templateapp.http
 
 import android.os.Build
-import com.okhttp3.logging.HttpLoggingInterceptor
 import com.stone.templateapp.App
 import com.stone.templateapp.BuildConfig
 import com.stone.templateapp.http.download.DownloadProgressInterceptor
@@ -60,10 +59,12 @@ object ApiHelper {
 //            }
 //            response
 //        }
-        val logging = HttpLoggingInterceptor()
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
 
-        okHttpBuilder.addInterceptor(logging)
+//        todo
+//        val logging = HttpLoggingInterceptor()
+//        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+//        okHttpBuilder.addInterceptor(logging)
+
 //        okHttpBuilder.addNetworkInterceptor(StethoInterceptor())
         val baseDir = App.getApp().cacheDir
         if (baseDir != null) {
@@ -90,20 +91,22 @@ object ApiHelper {
             chain.proceed(request)
         }
         if (BuildConfig.DEBUG) {
-            val logging = HttpLoggingInterceptor()
-            logging.setLevel(HttpLoggingInterceptor.Level.HEADERS) //此处不可使用Body，否则会使得下载文件被读进内存并使进度拦截器失效
-            okHttpBuilder.addInterceptor(logging)
+//            todo
+//            val logging = HttpLoggingInterceptor()
+//            logging.setLevel(HttpLoggingInterceptor.Level.HEADERS) //此处不可使用Body，否则会使得下载文件被读进内存并使进度拦截器失效
+//            okHttpBuilder.addInterceptor(logging)
 //            okHttpBuilder.addNetworkInterceptor(StethoInterceptor())
         }
         return okHttpBuilder.build()
     }
 
     fun createUploadClient(): OkHttpClient {
-        val logging = HttpLoggingInterceptor()
-        logging.setLevel(HttpLoggingInterceptor.Level.HEADERS)
+//        todo
+//        val logging = HttpLoggingInterceptor()
+//        logging.setLevel(HttpLoggingInterceptor.Level.HEADERS)
         val builder = createDefaultBuilder()
                 .retryOnConnectionFailure(true)
-                .addInterceptor(logging)
+//                .addInterceptor(logging)
 //                .addNetworkInterceptor(StethoInterceptor())
 
         builder.addInterceptor { chain ->

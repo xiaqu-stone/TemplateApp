@@ -5,8 +5,8 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
-import com.stone.templateapp.util.AppUtil
-import com.stone.templateapp.util.Logs
+import com.stone.log.Logs
+import com.stone.templateapp.util.AppUtils
 
 
 class App : Application(), Application.ActivityLifecycleCallbacks {
@@ -56,9 +56,9 @@ class App : Application(), Application.ActivityLifecycleCallbacks {
     override fun onActivityDestroyed(activity: Activity) {
 //        Logs.i("onActivityDestroyed")
         //判断当前任务栈是否为空，为空则将curActivity置null
-        if (!AppUtil.isAppAlive(this, BuildConfig.APPLICATION_ID)) {
+        if (!AppUtils.isAppAlive(this, BuildConfig.APPLICATION_ID)) {
             curActivity = null
-            AppUtil.exitProcess()//任务栈为0时，进程为及时关闭，手动关闭进程
+            AppUtils.exitProcess()//任务栈为0时，进程为及时关闭，手动关闭进程
         }
 
         //回退时，先回调下一个Activity的resume，然后回调当前Activity的destroy

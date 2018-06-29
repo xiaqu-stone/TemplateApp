@@ -9,9 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebSettings
 import android.webkit.WebView
+import com.stone.log.Logs
 import com.stone.templateapp.R
 import com.stone.templateapp.module.web.MyDownListener
-import com.stone.templateapp.util.Logs
 
 /**
  * 关于WebView及其附属类的一些函数扩展

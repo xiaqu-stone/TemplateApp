@@ -5,8 +5,8 @@ import android.webkit.ConsoleMessage
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.widget.ProgressBar
+import com.stone.log.Logs
 import com.stone.templateapp.extensions.setTitle
-import com.stone.templateapp.util.Logs
 
 /**
  * Created By: sqq

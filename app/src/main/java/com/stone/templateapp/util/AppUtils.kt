@@ -10,15 +10,14 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.telephony.TelephonyManager
 import android.text.TextUtils
+import com.stone.log.Logs
 import com.stone.templateapp.R
+import com.stone.templateapp.util.EDcryptUtils.toMD5
 import org.jetbrains.anko.toast
-import java.io.UnsupportedEncodingException
-import java.security.MessageDigest
-import java.security.NoSuchAlgorithmException
 import java.util.*
 
 @Suppress("unused", "MemberVisibilityCanBePrivate")
-object AppUtil {
+object AppUtils {
 
     private const val TAG = "AppUtil"
 
@@ -223,26 +222,5 @@ object AppUtil {
         return uuid
     }
 
-    /**
-     * @param string
-     * @return MD5加密串
-     */
-    fun toMD5(string: String): String {
-        val hash: ByteArray
-        try {
-            hash = MessageDigest.getInstance("MD5").digest(
-                    string.toByteArray(charset("UTF-8")))
-        } catch (e: NoSuchAlgorithmException) {
-            throw RuntimeException("Huh, MD5 should be supported?", e)
-        } catch (e: UnsupportedEncodingException) {
-            throw RuntimeException("Huh, UTF-8 should be supported?", e)
-        }
-        val hex = StringBuilder(hash.size * 2)
-        for (b in hash) {
-            if ((b.toInt() and 0xFF) < 0x10)
-                hex.append("0")
-            hex.append(Integer.toHexString(b.toInt() and 0xFF))
-        }
-        return hex.toString()
-    }
+
 }

@@ -5,6 +5,7 @@ package com.stone.templateapp.util
 import android.content.Context
 import android.content.SharedPreferences
 import com.stone.templateapp.App
+import com.stone.templateapp.util.EDcryptUtils.toMD5
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.Method
 
@@ -13,11 +14,13 @@ import java.lang.reflect.Method
  */
 object SPUtils {
 
-    private val FILE_NAME = AppUtil.toMD5("loan_share_data")
+    private val FILE_NAME = toMD5("loan_share_data")
 
-    val TOKEN = AppUtil.toMD5("TOKEN")
-    val UUID = AppUtil.toMD5("UUID")
-    val IMEI = AppUtil.toMD5("IMEI")
+    val TOKEN = toMD5("TOKEN")
+    val UUID = toMD5("UUID")
+    val IMEI = toMD5("IMEI")
+    val API_HOST = toMD5("API_HOST")
+    val H5_HOST = toMD5("H5_HOST")
 
     /**
      * 保存数据的方法，我们需要拿到保存数据的具体类型，然后根据类型调用不同的保存方法

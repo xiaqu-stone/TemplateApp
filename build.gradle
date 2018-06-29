@@ -25,11 +25,11 @@ buildscript {
         fastjson = '1.1.68.android' //https://github.com/alibaba/fastjson
         glide = '4.6.1'
         leakcanary = '1.5.4' //
-        okhttp = '3.8.1' //https://github.com/square/okhttp
-        retrofit = '2.3.0' //https://github.com/square/retrofit
-        rxAndroid = '2.0.1'
+        okhttp = '3.10.0' //https://github.com/square/okhttp
+        retrofit = '2.4.0' //https://github.com/square/retrofit
+        rxAndroid = '2.0.2'
         rxBus = '2.0.0' //https://github.com/AndroidKnife/RxBus/tree/2.x
-        rxJava = '2.1.2'  //https://github.com/ReactiveX/RxJava/releases
+        rxJava = '2.1.14-RC1'  //https://github.com/ReactiveX/RxJava/releases
         stetho = '1.5.0'
         parceler = '1.1.10'
         gson = '2.8.4' //https://github.com/google/gson

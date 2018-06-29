@@ -5,8 +5,8 @@ import android.graphics.Bitmap
 import android.net.http.SslError
 import android.view.View
 import android.webkit.*
+import com.stone.log.Logs
 import com.stone.templateapp.extensions.overrideUrlLoading
-import com.stone.templateapp.util.Logs
 
 /**
  * Created By: sqq

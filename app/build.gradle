@@ -65,6 +65,5 @@ dependencies {
     implementation "com.sqq.xiaqu:logs:1.0.0"
 
     implementation "com.sqq.xiaqu:okhttp3-logging:1.0.0"
-
 //    implementation project(":okhttp3-logging")
 }

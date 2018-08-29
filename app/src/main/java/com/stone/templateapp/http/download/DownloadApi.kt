@@ -4,13 +4,13 @@ import android.content.Context
 import android.os.Environment
 import com.stone.log.Logs
 import com.stone.templateapp.App
-import com.stone.templateapp.extensions.toast
 import com.stone.templateapp.http.ApiHelper
 import com.stone.templateapp.util.CompressUtils
 import com.stone.templateapp.util.FileUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import okhttp3.ResponseBody
+import org.jetbrains.anko.toast
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import java.io.File
@@ -35,14 +35,14 @@ class DownloadApi {
                 .unsubscribeOn(Schedulers.io())
                 .map { body: ResponseBody -> body.byteStream() }
                 .observeOn(Schedulers.io())
-                .doOnNext({ inputStream ->
+                .doOnNext { inputStream ->
                     Logs.i(TAG, "accept() called with: inputStream = [$inputStream]")
                     FileUtils.saveSmallFile(inputStream, destination)
                     Logs.i(TAG, "accept() called with: inputStream = [$inputStream]")
                     CompressUtils.unzip(destination)
-                })
+                }
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { toast("资源更新完毕") }
+                .subscribe { App.getApp().toast("资源更新完毕") }
     }
 
     fun createDownClient(downUrl: String, listener: DownloadProgressListener?): DownloadService {

@@ -20,4 +20,3 @@ internal fun Activity?.isValid(): Boolean {
         }
     } else false
 }
-

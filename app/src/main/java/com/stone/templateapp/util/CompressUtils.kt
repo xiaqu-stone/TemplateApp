@@ -121,28 +121,37 @@ object CompressUtils {
 //        println("name = $name")
         zip.entries().iterator().forEach {
             println("zip entry = ${it.name}")
-            val inputStream = zip.getInputStream(it)
-            val outFile = File(destFile, it.name)
-//            println(outFile.path)
-            if (it.isDirectory) {
-                checkDestFile(outFile)
-            } else {//只有不是目录，才进行下面的解压流程
-                outFile.outputStream().buffered(10 * 1024 * 1024)
-                        .use {
-                            val buffer = ByteArray(2 * 1024 * 1024)
-                            var len = inputStream.read(buffer)
-                            while (len > 0) {
-                                it.write(buffer, 0, len)
-                                len = inputStream.read(buffer)
+            if (!filterMACOSX(it.name)) {
+                val inputStream = zip.getInputStream(it)
+                val outFile = File(destFile, it.name)
+//                    println(outFile.path)
+                if (it.isDirectory) {
+                    checkDestFile(outFile)
+                } else {//只有不是目录，才进行下面的解压流程
+                    outFile.outputStream().buffered(10 * 1024 * 1024)
+                            .use {
+                                val buffer = ByteArray(2 * 1024 * 1024)
+                                var len = inputStream.read(buffer)
+                                while (len > 0) {
+                                    it.write(buffer, 0, len)
+                                    len = inputStream.read(buffer)
+                                }
+                                it.flush()
+                                inputStream.close()
                             }
-                            it.flush()
-                            inputStream.close()
-                        }
+                }
             }
+
         }
 
 //        println("======结束解压========")
+    }
 
+    /**
+     * 过滤MacOSX中的特有文件
+     */
+    private fun filterMACOSX(name: String): Boolean {
+        return name.substringBefore("/") == "__MACOSX"
     }
 
     private fun checkZipFile(file: File): Boolean {

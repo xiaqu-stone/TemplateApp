@@ -31,12 +31,14 @@ class ExampleUnitTest {
 
     @Test
     fun testUnZip() {
-        CompressUtils.unzip("/Users/mac/Downloads/zip/归档.zip")
+//        CompressUtils.unzip("/Users/mac/Downloads/20180710143118465130018.zip","/Users/mac/Downloads/ziptest")
+        CompressUtils.unzip("/Users/mac/Downloads/my.zip","/Users/mac/Downloads/ziptestmy")
 //        CompressUtils.unzip("/Users/mac/Downloads/zip/归档.zip", "/Users/mac/Downloads/zip")
+//        20180710143118465130018.zip
     }
 
     @Test
     fun testZip() {
-        CompressUtils.zip("/Users/mac/Downloads/zip/")
+//        CompressUtils.zip("/Users/mac/Downloads/zip/")
     }
 }

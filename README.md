@@ -7,5 +7,5 @@ APP 模板
 gradle
 
 ```
-implementation 'com.sqq.xiaqu:okhttp3-logging:1.0.0'
+implementation 'com.sqq.xiaqu:okhttp3-logging:1.0.1'
 ```

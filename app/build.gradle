@@ -62,8 +62,8 @@ dependencies {
 
     implementation "com.google.code.gson:gson:$gson"
 
-    implementation "com.sqq.xiaqu:logs:1.0.0"
+    implementation "com.sqq.xiaqu:logs:$logs"
 
-    implementation "com.sqq.xiaqu:okhttp3-logging:1.0.0"
+    implementation "com.sqq.xiaqu:okhttp3-logging:1.0.1"
 //    implementation project(":okhttp3-logging")
 }

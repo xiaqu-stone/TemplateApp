@@ -13,8 +13,8 @@ ext {
             butterKnife          : "8.6.0",
             glide                : "4.0.0-SNAPSHOT",
             permissionsDispatcher: "2.4.0",
-            xiaquAdapter         : "1.0.0",
-            xiaquLogs            : "1.0.2"
+            adapter              : "1.0.2",
+            logs                 : "1.0.2"
     ]
     libs = [
             //normal compile
@@ -53,8 +53,8 @@ ext {
 
 //            xiaqu library
             //https://github.com/xiaqu-stone/adapterRecycler
-            xiaquAdapter           : "com.sqq.xiaqu:adapter-recycler:1.0.0",
-            xiaquLogs: "com.sqq.xiaqu:logs:1.0.0",
+            adapter                : "com.sqq.xiaqu:adapter-recycler:${conf.adapter}",
+            logs                   : "com.sqq.xiaqu:logs:${conf.logs}",
 
             //test compile
             junit                  : "junit:junit:4.12",

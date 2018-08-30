@@ -108,7 +108,7 @@ object ApiHelper {
 //                .addNetworkInterceptor(StethoInterceptor())
 
         builder.addInterceptor { chain ->
-//            var token = SPUtil.instance.getToken()
+            //            var token = SPUtil.instance.getToken()
 //            if (token == null) {
 //                token = ""
 //            }
@@ -133,7 +133,6 @@ object ApiHelper {
                 .readTimeout(TIME_OUT_NORMAL.toLong(), TimeUnit.MILLISECONDS)
                 .sslSocketFactory(sslSocketFactory.sSLSocketFactory, sslSocketFactory.trustManager)
     }
-
 
 
 }
